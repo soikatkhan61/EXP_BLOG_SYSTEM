@@ -1,0 +1,162 @@
+<%- include('../partials/head.ejs') %>
+
+   <style>
+      .disaplayInput {
+         display: none;
+      }
+   </style>
+
+   <script>
+      function update() {
+         var d = document.getElementById('country');
+         var dText = d.options[d.selectedIndex].text;
+         document.getElementById('result').value = dText
+      }
+   </script>
+
+   <script>
+      const mySelect = document.getElementById("textSelect");
+      const inputOther = document.getElementById("form12");
+      const labelInput = document.getElementById("inputLabel");
+      const divInput = document.getElementById("inputDiv");
+      const selectDiv = document.getElementById("textSelectdiv");
+
+      mySelect.addEventListener('optionSelect.mdb.select', function (e) {
+         const SelectValue = document.getElementById('textSelect').value;
+         if (SelectValue === 'customOption') {
+            inputOther.style.display = 'inline';
+            inputOther.removeAttribute('disabled');
+            labelInput.classList.remove('disaplayInput');
+            divInput.classList.remove('disaplayInput');
+            selectDiv.style.display = 'none';
+            inputOther.focus();
+            mySelect.disabled = 'true';
+
+         } else {
+            a.style.display = 'none';
+         }
+      })
+
+      function hideInput() {
+         if (inputOther !== null && inputOther.value === "") {
+            inputOther.style.display = 'none';
+            inputOther.setAttribute('disabled', '');
+            selectDiv.style.display = 'inline';
+            mySelect.removeAttribute('disabled');
+            labelInput.classList.add('disaplayInput');
+            divInput.classList.add('disaplayInput');
+         }
+      }
+   </script>
+   <div class="container-fluid">
+
+
+
+      <div class="row">
+         <div class="col-md-2">
+            <p>this is sidebar</p>
+         </div>
+
+         <div class="col-md-7">
+            <div class="card card-body  py-4">
+               <h2 class="my-3">Add new post</h2>
+               <form action="/posts/create" method="post">
+                  <div class="form-outline">
+
+                     <input type="text" name="title" id="title" class="form-control">
+                     <label class="form-label" for="title">Enter your post title</label>
+
+                     <div class="invalid-feedback">ok </div>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="tiny-mce-post-body">Enter your post body</label>
+                     <textarea name="body" id="tiny-mce-post-body" class="form-control" rows="20"
+                        cols="5"></textarea>
+                     <div class="invalid-feedback">ok </div>
+                  </div>
+
+
+
+                  <div class="input-group my-3">
+                     <div class="custom-file mx-2">
+                        <input type="file" name="thumbnail" class="custom-file-input">
+                        <label for="inputGroupFile" class="custom-file-label"></label>
+                     </div>
+                  </div>
+
+                  <input type="submit" class="btn btn-success" value="Create Post">
+
+
+            </div>
+         </div>
+
+         <div class="col-md-3 my-1">
+            <div class="publish">
+               <div class="card">
+                  <div class="card-header">
+                     <h3>Publish</h3>
+                  </div>
+                  <div class="card-body pb-3">
+                     <button class="btn btn-sm my-2">Save Draft</button>
+                     <p> <i class="fa fa-eye mx-2"></i>Visibility: <span>Public</span></p>
+                     <p> <i class="fa fa-calendar mx-2"></i>Publish: <span>Immediately</span></p>
+                  </div>
+               </div>
+
+               <div class="category my-3">
+                  <div class="card">
+                     <div class="card-header">
+                        <h3>Category</h3>
+                     </div>
+                     <div class="card-body pb-4">
+                        <div id="textSelectdiv">
+                           <select id="textSelect" class="select" style="display: inline;">
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                              <option value="4">Four</option>
+                              <option value="customOption">Other</option>
+                           </select>
+                           <label class="form-label select-label">Example label</label>
+                        </div>
+                        <div id="inputDiv" class="form-outline disaplayInput">
+                           <input type="text" id="form12" class="form-control" style="display: none;"
+                              onblur="hideInput()" disabled />
+                           <label id="inputLabel" class="form-label disaplayInput" for="form12">Other</label>
+                        </div>
+
+
+                     </div>
+                  </div>
+               </div>
+
+               <div class="tags my-3">
+                  <div class="card">
+                     <div class="card-header">
+                        <h3>Tags</h3>
+                     </div>
+                     <div class="card-body pb-3">
+                        <div class="form-outline my-3">
+                           <input type="text" name="tags" id="tags" class="form-control" value="">
+                           <label class="form-label" for="tags">Enter some tags</label>
+                        </div>
+                        <p>Tags should be separeted by a comma</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+         </form>
+      </div>
+   </div>
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"></script>
+   <script src="/js/tinymce.js"></script>
+
+
+
+   </body>
+
+   </html>
