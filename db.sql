@@ -29,4 +29,4 @@ INSERT INTO `categories`(`category`) VALUES ('Assembly');
 INSERT INTO `categories`(`category`) VALUES ('HTML');
 INSERT INTO `categories`(`category`) VALUES ('CSS');
 --all the tables are created ends here--
---checking for github chek--
+--checking for github chek again--
