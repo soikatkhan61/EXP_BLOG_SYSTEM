@@ -8,6 +8,7 @@ const db = require('./config/dbconfig')
 const session = require('express-session')
 
 const setRoutes = require('./routes/routes')
+const {getHomePage} = require('./controllers/dashboardController')
 
 
 const app = express()
@@ -50,9 +51,7 @@ app.get('/pg',(req,res,next)=>{
     res.render('auth/auth',{signupMode:true})
 })
 
-app.get("/",(req,res)=>{
-    res.render('index')
-})
+app.get("/",getHomePage)
 
 
 
