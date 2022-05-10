@@ -1,68 +1,93 @@
 <%- include('../partials/head.ejs') %>
 
-<div class="container py-5">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                  <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-                  <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#!" class="btn btn-primary">Button</a>
-                </div>
+
+  <div class="container py-5">
+    <!--Section: Newsfeed-->
+    <% for( let post of rows) {%> 
+      <section style="margin-left: 300px;" class="py-3">
+        <div class="card" style="max-width: 42rem">
+          <div class="card-body">
+            <!-- Data -->
+            <div class="d-flex mb-3">
+              <a href="">
+                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/<%- Math.floor(Math.random() * 10) + 10 %>.webp"
+                  class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
+              </a>
+              <div>
+                <a href="" class="text-dark mb-0">
+                  <strong>
+                    <%= post.author_name %>
+                  </strong>
+                </a>
+                <a href="" class="text-muted d-block" style="margin-top: -6px">
+                  <small>
+                    <% moment(post.createdAt).fromNow() %>
+                  </small>
+                </a>
               </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                  <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-                  <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#!" class="btn btn-primary">Button</a>
-                </div>
+            </div>
+            <!-- Description -->
+            <div>
+              <p>
+                <%= post.body %>
+              </p>
+            </div>
+          </div>
+          <!-- Media -->
+          <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
+            <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/0<%- Math.floor(Math.random() * 10) + 10 %>.webp"
+              class="w-100" />
+            <a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+            </a>
+          </div>
+          <!-- Media -->
+          <!-- Interactions -->
+          <div class="card-body">
+            <!-- Reactions -->
+            <div class="d-flex justify-content-between mb-3">
+              <div>
+                <a href="">
+                  <i class="fas fa-thumbs-up text-primary"></i>
+                  <i class="fas fa-heart text-danger"></i>
+                  <span><%= post.like_count %></span>
+                </a>
               </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                  <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-                  <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#!" class="btn btn-primary">Button</a>
-                </div>
+              <div>
+                <a href="" class="text-muted">
+                  <%= post.comments_count %> comments
+                </a>
               </div>
+            </div>
+            <!-- Reactions -->
+  
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between text-center border-top border-bottom mb-4">
+              <button type="button" class="btn btn-link btn-lg" data-mdb-ripple-color="dark">
+                <i class="fas fa-thumbs-up me-2"></i>Like
+              </button>
+              <button type="button" class="btn btn-link btn-lg" data-mdb-ripple-color="dark">
+                <i class="fas fa-comment-alt me-2"></i>Comment
+              </button>
+              <button type="button" class="btn btn-link btn-lg" data-mdb-ripple-color="dark">
+                <i class="fas fa-share me-2"></i>Share
+              </button>
+            </div>
+            <!-- Buttons -->
+  
+            <!-- Comments -->
+  
+          </div>
+          <!-- Interactions -->
         </div>
-        <div class="col">
-            <div class="card">
-                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                  <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/111.webp" class="img-fluid"/>
-                  <a href="#!">
-                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                  </a>
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#!" class="btn btn-primary">Button</a>
-                </div>
-              </div>
-        </div>
-      </div>
-    
-</div>
+      </section>
+    <%}%> 
+    <!--Section: Newsfeed-->
+  </div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"></script>
+
+  </body>
+
+  </html>
     <%- include('../partials/footer.ejs') %>

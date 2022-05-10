@@ -6,6 +6,8 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const db = require('./config/dbconfig')
 const session = require('express-session')
+var moment = require('moment');
+
 
 const setRoutes = require('./routes/routes')
 const {getHomePage} = require('./controllers/dashboardController')
@@ -16,6 +18,11 @@ const app = express()
 //import middleware
 const {bindUserWithRequest} = require('./middleware/authMiddleware')
 const setLocals = require('./middleware/setLocals')
+
+//utilities
+var shortDateFormat = "ddd @ h:mmA"; // this is just an example of storing a date format once so you can change it in one place and have it propagate
+app.locals.moment = moment; // this makes moment available as a variable in every EJS page
+app.locals.shortDateFormat = shortDateFormat;
 
 const middleware = [
     session({
@@ -48,7 +55,21 @@ db.connect((err)=>{
 })
 
 app.get('/pg',(req,res,next)=>{
-    res.render('auth/auth',{signupMode:true})
+    let findAuthorId = "SELECT * FROM posts INNER JOIN users WHERE users.id in (SELECT * FROM users WHERE id=102)"
+    let author_id
+    
+    
+    db.query(findAuthorId,(e,rows)=>{
+        if(e){
+            console.log(e)
+        }
+        else{
+            author_id=rows[0].id
+        }
+    })
+
+
+    console.log(author_id)
 })
 
 app.get("/",getHomePage)

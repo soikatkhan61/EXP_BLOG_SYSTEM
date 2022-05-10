@@ -1,0 +1,50 @@
+<%- include('../partials/head.ejs') %>
+
+
+    <div class="container py-5" style="width: 50%;">
+        <h3 class="text-center pb-3">Create Profile!</h3>
+        <form action="/auth/create_profile" method="post">
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="row mb-4">
+                <div class="col">
+                    <div class="form-outline">
+                        <input name="name" type="text" id="form6Example1" class="form-control" />
+                        <label class="form-label" for="form6Example1">First name</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-outline">
+                        <input type="text" id="form6Example2" class="form-control" />
+                        <label class="form-label" for="form6Example2">Last name</label>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+                <input name="education" type="text" id="form6Example4" class="form-control" />
+                <label class="form-label" for="form6Example4">Education</label>
+            </div>
+    
+    
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+                <input name="address" type="text" id="form6Example4" class="form-control" />
+                <label class="form-label" for="form6Example4">Address</label>
+            </div>
+    
+    
+    
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+                <input name="skill" type="text" id="form6Example5" class="form-control" />
+                <label class="form-label" for="form6Example5">Skill</label>
+            </div>
+    
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Submit</button>
+        </form>
+    </div>
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"></script>

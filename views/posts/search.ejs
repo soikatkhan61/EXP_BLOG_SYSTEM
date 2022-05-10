@@ -1,0 +1,86 @@
+<%- include('../partials/head.ejs') %>
+
+    <div class="container py-5">
+        <h3 class="text-center">Searching Results...</h3>
+        <hr>
+        <div class="card d-flex" style="width: 48rem;margin-left: 200px;">
+            <div class="card-body">
+                <!--Table-->
+                <table class="table-responsive">
+                </table>
+                <table class="table table-hover table-forum text-center">
+                    <!--Table head-->
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="text-left">Topic</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+
+                    <!--Table head-->
+                    <!--Table body-->
+                    <tbody>
+
+                        <% for(let post of rows){%>
+                            <tr>
+                                <td scope="row" class="text-nowrap">
+
+                                    <a href="#" type="button"
+                                        class="btn btn-outline-dark-green btn-sm p-1 m-0 waves-effect">
+                                        <span class="value">0</span>
+                                        <i class="fas fa-thumbs-up ml-1"></i>
+                                    </a>
+                                    <a href="#" button" class="btn btn-outline-danger btn-sm p-1 m-0 waves-effect">
+                                        <span class="value">0</span>
+                                        <i class="fas fa-thumbs-down ml-1"></i>
+                                    </a>
+                                </td>
+                                <td class="text-start">
+                                    <a href="/posts/<%= post.post_id %>" class="font-weight-bold blue-text">
+                                        <%= post.title %>
+                                    </a>
+                                    <div class="my-2">
+                                        <a href="#" class="blue-text">
+                                            <strong>
+                                                <%= post.category %>
+                                            </strong>
+                                        </a>
+                                        <span class="badge bg-secondary mx-1">staff</span><span
+                                            class="badge bg-primary mx-1">pro</span><span
+                                            class="badge bg-warning mx-1">premium</span>
+                                        <span>
+                                            <%= moment(post.createdAt).fromNow() %>
+                                        </span>
+                                        <div></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="#" class="text-dark">
+                                        <span>
+                                            <%= post.comments_count %>
+                                        </span>
+                                        <i class="fas fa-comments ml-1"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <% }%>
+                    </tbody>
+                    <!--Table body-->
+                </table>
+
+                <% if(rows.length==0) {%>
+                    <h2 class="text-danger text-center">No data found!!</h2>
+                    <% }%>
+
+                        <!-- Table -->
+
+            </div>
+        </div>
+    </div>
+
+
+
+    </body>
+
+    </html>

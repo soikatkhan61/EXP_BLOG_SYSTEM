@@ -5,7 +5,7 @@ const db = require('../config/dbconfig')
 
 exports.loginGetController = (req,res,next) =>{
     console.log(req.session)
-    res.render('auth/auth', {signupMode:false})
+    res.render('auth/auth', {signupMode:false,msg:""})
 }
 
 exports.loginPostController = (req,res,next) =>{
@@ -27,22 +27,42 @@ exports.loginPostController = (req,res,next) =>{
                 }
             })
             res.redirect('/dashboard')
+        }else{
+            res.render('auth/auth', {signupMode:false,msg:"Invalid Credential!"})
         }
     })
 }
 
 exports.registerGetController = (req,res,next) =>{
-    res.render('auth/auth', {signupMode:true})
+    res.render('auth/auth', {signupMode:true,msg:""})
 }
 
 exports.registerPostController = (req,res,next) =>{
     let {username,email,password,c_password} = req.body
 
     if(password !== c_password){
-        return res.render('auth/auth', {signupMode:true})
+        return res.render('auth/auth', {signupMode:true,msg:""})
     }
 
     let sql = `INSERT INTO users VALUES ( null,'${username}','${email}','${password}')`
+
+    db.query(sql,function(e,rows){
+        if(e){
+            res.send(e)
+        }else{
+            res.redirect('/auth/create_profile')
+        }
+    })
+}
+
+exports.createProfileGetController = (req,res,next) =>{
+    res.render('posts/createProfile')
+}
+exports.createProfilePostController = (req,res,next) =>{
+    let {name,education,address,skill} = req.body
+
+
+    let sql = `INSERT INTO profiles VALUES ( 1,${req.user.id},'${name}','${address}','${education}','${skill}')`
 
     db.query(sql,function(e,rows){
         if(e){
